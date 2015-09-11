@@ -29,6 +29,7 @@ cm_install_s3fs: yes
 cm_configure_nginx: yes
 cm_install_proftpd: yes
 cm_install_bedtools: yes
+configure_docker : yes
 cm_install_novnc: no
 cleanup: no
 # If `only_cleanup` is set, only the cleanup tasks will run and no other.
@@ -68,7 +69,7 @@ aws_secret_key: "{{ lookup('env','AWS_SECRET_KEY') }}"
 
 galaxy_manage_trackster: yes
 len_file_path: "{{ galaxy_server_dir }}/tool-data/len"
-bedtools_version: 2.24.0
+bedtools_version: 2.25.0
 
 #-- Tools role configs
 galaxy_tools_install_tools: yes
