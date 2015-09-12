@@ -4,12 +4,6 @@
 - name: Place Rprofile file to /etc/R/
   copy: src=Rprofile dest=/etc/R/Rprofile.site
 
-- name: Place BatchJobs_global_config.R file to /usr/local/lib/R/site-library/BatchJobs/etc
-  copy: src=BatchJobs_global_config.R dest=/usr/local/lib/R/site-library/BatchJobs/etc/BatchJobs_global_config.R
-
-- name: Place simple.tmpl file to /usr/local/lib/R/site-library/BatchJobs/etc
-  copy: src=simple.tmpl dest=/usr/local/lib/R/site-library/BatchJobs/etc/simple.tmpl
-
 - name: Build dependency for rgl
   apt: pkg=r-cran-rgl state=build-dep
 
@@ -27,4 +21,10 @@
     - devtools
     - snow
     - foreach
-    - BatchJobs
+    - BatchJobs #'
+
+- name: Place BatchJobs_global_config.R file to /usr/local/lib/R/site-library/BatchJobs/etc
+  copy: src=BatchJobs_global_config.R dest=/usr/local/lib/R/site-library/BatchJobs/etc/BatchJobs_global_config.R
+
+- name: Place simple.tmpl file to /usr/local/lib/R/site-library/BatchJobs/etc
+  copy: src=simple.tmpl dest=/usr/local/lib/R/site-library/BatchJobs/etc/simple.tmpl
