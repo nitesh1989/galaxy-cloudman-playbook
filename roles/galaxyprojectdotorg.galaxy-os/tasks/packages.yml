@@ -65,7 +65,7 @@
     - wget
     - zlib1g-dev
 
-- name: Install lxc-docker if installing packages.
+- name: Install Docker package
   apt: pkg={{ item }} state={{ apt_package_state }}
   with_items:
     - "{{ docker_package }}"

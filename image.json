@@ -8,8 +8,8 @@
     "image_name": "Galaxy-CloudMan-{{timestamp}}",
     "aws_source_ami": "ami-9a562df2",
     "aws_instance_type": "c3.large",
-    "os_source_image": "d57696ba-5ed2-43fe-bf78-a587829973a9",
-    "os_flavor": "1"
+    "cc_floating_ip": "129.114.111.137",
+    "js_floating_ip": "149.165.168.93"
   },
 
 
@@ -26,22 +26,53 @@
     "ami_block_device_mappings": [ {
         "device_name": "/dev/sda1",
         "volume_size": 20,
+        "volume_type": "gp2",
         "delete_on_termination": true
     } ],
     "launch_block_device_mappings": [ {
         "device_name": "/dev/sda1",
         "volume_size": 20,
+        "volume_type": "gp2",
         "delete_on_termination": true
     } ]
   },
   {
+    "name": "nectar",
     "type": "openstack",
     "openstack_provider": "Compute Service",
     "region": "Melbourne",
     "ssh_username": "ubuntu",
-    "source_image": "{{user `os_source_image`}}",
-    "flavor": "{{user `os_flavor`}}",
+    "source_image": "d57696ba-5ed2-43fe-bf78-a587829973a9",
+    "flavor": "1",
     "image_name": "{{user `image_name`}}",
+    "security_groups": [ "default" ]
+  },
+  {
+    "name": "chameleon",
+    "type": "openstack",
+    "openstack_provider": "Compute Service",
+    "region": "RegionOne",
+    "ssh_username": "cc",
+    "source_image": "fc507be9-41e4-4c2c-b142-5c4256f8a814",
+    "flavor": "2",
+    "image_name": "{{user `image_name`}}",
+    "security_groups": [ "default" ],
+    "networks": [ "739eaa06-16d1-45fe-8a79-77044935c517" ],
+    "use_floating_ip": true,
+    "floating_ip": "{{user `cc_floating_ip`}}"
+  },
+  {
+    "name": "jetstream",
+    "type": "openstack",
+    "openstack_provider": "Compute Service",
+    "domain_name": "tacc",
+    "ssh_username": "ubuntu",
+    "source_image": "1c997f2c-bae9-4b53-9197-2948cd449405",
+    "flavor": "1",
+    "image_name": "{{user `image_name`}}",
+    "networks": [ "86a1c3e8-b1fb-41f3-bcaf-8334567fe989" ],
+    "use_floating_ip": true,
+    "floating_ip": "{{user `js_floating_ip`}}",
     "security_groups": [ "default" ]
   }],
   "provisioners": [
